@@ -13,20 +13,33 @@ targets = ["x86_64-unknown-linux-gnu", "wasm32-unknown-unknown"]
 [dependencies]
 egui = "0.30"
 eframe = { version = "0.30", default-features = false, features = [
-    "accesskit",     # Make egui compatible with screen readers. NOTE: adds a lot of dependencies.
-    "default_fonts", # Embed the default egui fonts.
-    "glow",          # Use the glow rendering backend. Alternative: "wgpu".
-    "persistence",   # Enable restoring app state when restarting the app.
-    "wayland",       # To support Linux (and CI)
+  # "accesskit",     # Make egui compatible with screen readers. NOTE: adds a lot of dependencies.
+  "default_fonts", # Embed the default egui fonts.
+  "glow",          # Use the glow rendering backend. Alternative: "wgpu".
+  "persistence",   # Enable restoring app state when restarting the app.
+  "wayland",       # To support Linux (and CI)
+  "x11",
 ] }
-log = "0.4"
+tracing = { version = "0.1", features = ["log"] }
 
 # You only need serde if you want app persistence:
 serde = { version = "1", features = ["derive"] }
 
 # native:
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-env_logger = "0.11"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tokio = { version = "1", features = [
+  "time",
+  "rt",
+  "macros",
+  "sync",
+  "rt-multi-thread",
+  "process",
+  "io-util",
+  "signal",
+] }
+ollama-rs = { version = "0.2", features = ["stream"] }
+futures = "0.3"
 
 # web:
 [target.'cfg(target_arch = "wasm32")'.dependencies]
