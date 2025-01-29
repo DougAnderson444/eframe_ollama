@@ -562,6 +562,7 @@ dependencies = [
  "eframe",
  "egui",
  "futures",
+ "ollama-launcher",
  "ollama-rs",
  "serde",
  "tokio",
@@ -1845,6 +1846,14 @@ name = "object"
 version = "0.24.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1a5b3dd1c072ee7963717671d1ca129f1048fda25edea6b752bfc71ac8854170"
+
+[[package]]
+name = "ollama-launcher"
+version = "0.1.0"
+dependencies = [
+ "tokio",
+ "tracing",
+]
 
 [[package]]
 name = "ollama-rs"

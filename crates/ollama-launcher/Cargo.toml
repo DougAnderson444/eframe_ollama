@@ -1,0 +1,17 @@
+[package]
+name = "ollama-launcher"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tracing = { version = "0.1", features = ["log"] }
+tokio = { version = "1", features = [
+  "time",
+  "rt",
+  "macros",
+  "sync",
+  "rt-multi-thread",
+  "process",
+  "io-util",
+  "signal",
+] }
