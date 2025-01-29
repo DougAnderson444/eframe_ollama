@@ -1,6 +1,6 @@
 # Ollama Launcher
 
-Spawns a new Linux OS thread and runs Ollama in it using Tokio.
+Spawns a new OS thread (Linux for now) and runs Ollama in it using Tokio.
 
 Kills the processes with `ollama` in the name when it gets the signal.
 

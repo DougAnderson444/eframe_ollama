@@ -26,7 +26,7 @@ async fn main() -> eframe::Result {
     let _ = eframe::run_native(
         "eframe_ollama",
         native_options,
-        Box::new(|cc| Ok(Box::new(eframe_template::TemplateApp::new(cc)))),
+        Box::new(|cc| Ok(Box::new(eframe_ollama::TemplateApp::new(cc)))),
     );
 
     // Shutdown the ollama server
