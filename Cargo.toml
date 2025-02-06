@@ -3,6 +3,7 @@ members = [".", "crates/*"]
 
 [workspace.dependencies]
 ollama-launcher = { path = "crates/ollama-launcher" }
+libp2p = { version = "0.55.0" }
 
 [package]
 name = "eframe_ollama"
@@ -10,7 +11,7 @@ version = "0.1.0"
 authors = ["Emil Ernerfeldt <emil.ernerfeldt@gmail.com>"]
 edition = "2021"
 include = ["LICENSE-APACHE", "LICENSE-MIT", "**/*.rs", "Cargo.toml"]
-rust-version = "1.81"
+rust-version = "1.83"
 
 [package.metadata.docs.rs]
 all-features = true
@@ -31,6 +32,7 @@ tracing = { version = "0.1", features = ["log"] }
 
 # You only need serde if you want app persistence:
 serde = { version = "1", features = ["derive"] }
+rand = "0.8"
 
 # native:
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
@@ -48,11 +50,45 @@ tokio = { version = "1", features = [
 ollama-launcher = { workspace = true }
 ollama-rs = { version = "0.2", features = ["stream"] }
 futures = "0.3"
-
+libp2p = { workspace = true, features = [
+  "ed25519",
+  "macros",
+  "ping",
+  "tokio",
+  "quic",
+  "gossipsub",
+  "identify",
+  "kad",
+  "request-response",
+  "cbor",
+  "noise",
+  "yamux",
+  "dcutr",
+  "tcp",
+  "rsa",
+] }
+libp2p-webrtc = { version = "0.9.0-alpha", features = ["tokio", "pem"] }
+libp2p-stream = { version = "0.3.0-alpha" }
 # web:
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 wasm-bindgen-futures = "0.4"
-web-sys = "0.3.70"           # to access the DOM (to hide the loading text)
+web-sys = "0.3.70" # to access the DOM (to hide the loading text)
+libp2p = { workspace = true, features = [
+  "ed25519",
+  "macros",
+  "ping",
+  "wasm-bindgen",
+  "gossipsub",
+  "identify",
+  "kad",
+  "request-response",
+  "cbor",
+  "relay",
+  "noise",
+  "yamux",
+  "websocket-websys",
+  "dcutr",
+] }
 
 [profile.release]
 opt-level = 2 # fast and small wasm
