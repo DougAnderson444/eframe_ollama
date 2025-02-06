@@ -26,6 +26,7 @@ eframe = { version = "0.30", default-features = false, features = [
   "wayland",       # To support Linux (and CI)
   "x11",
 ] }
+log = "0.4"
 tracing = { version = "0.1", features = ["log"] }
 
 # You only need serde if you want app persistence:
